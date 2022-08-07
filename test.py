@@ -12,15 +12,16 @@ while True:
     current_time = now.strftime("%H:%M")
     day_name = str(datetime.datetime.now().strftime('%A'))
     date_today = datetime.datetime.now().date()
-    try:
-        if current_time == "10:30" and day_name == "Monday" or day_name=="Tuesday" or day_name=="Wednesday" or day_name=="Thursday" or day_name=="Friday":
-            print("It is time to clock in")
-            if pyautogui.locateOnScreen("C:\\Users\\Administrator\\Desktop\\in.png",confidence=0.8) != None:
-                pyautogui.leftClick(1715,152)
-                content=("**Good Morning Subham!** \nToday's date is **{}** \nI have clocked in successfully at **{}**\n**Have a nice day :)**".format(date_today,current_time))
-                hook.send(content)
-                print("Clocked in at",day_name,date_today,current_time)
-                time.sleep(60)
+    if current_time == "12:00" or current_time=="6:00" or current_time=="0:00" or current_time=="18:00":
+        content=("**The script is online as of {}{}**".format(date_today,current_time))
+    if current_time == "10:30" and day_name == "Monday" or day_name=="Tuesday" or day_name=="Wednesday" or day_name=="Thursday" or day_name=="Friday":
+        print("It is time to clock in")
+        if pyautogui.locateOnScreen("C:\\Users\\Administrator\\Desktop\\in.png",confidence=0.8) != None:
+            pyautogui.leftClick(1715,152)
+            content=("**Good Morning Subham!** \nToday's date is **{}** \nI have clocked in successfully at **{}**\n**Have a nice day :)**".format(date_today,current_time))
+            hook.send(content)
+            print("Clocked in at",day_name,date_today,current_time)
+            time.sleep(60)
         elif current_time == "20:02" and day_name == "Monday" or day_name=="Tuesday" or day_name=="Wednesday" or day_name=="Thursday" or day_name=="Friday":
             if pyautogui.locateOnScreen("C:\\Users\\Administrator\\Desktop\\in.png",confidence=0.8) != None:
                 print("It is time to clock out")
@@ -31,7 +32,3 @@ while True:
                 time.sleep(60)
         else:
             pass
-    except:
-        if current_time!= "10:30" and current_time!= "20:02":
-            content=("**Hey Subham!** \nI ran into an error at **{} {}**".format(date_today,current_time))
-            hook.send(content)
